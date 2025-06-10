@@ -40,29 +40,6 @@ module.exports = {
             secure: false, // Does the lavalink server use secure connection
         },
     ],
-
-    presence: { // Your bot's presence
-        status: "idle",
-        activities: [
-            {
-                name: "{Guilds} servers",
-                type: "WATCHING",
-                data: (client) => {
-                    return {
-                        Guilds: client.guilds.cache.size,
-                    };
-                },
-            },
-            {
-                name: "Spotify",
-                type: "LISTENING",
-            },
-            {
-                name: "This bot is made by Beban Community🧡",
-                type: "CUSTOM",
-            },
-        ],
-    },
 }
 
 /**
