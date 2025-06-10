@@ -79,7 +79,7 @@ class AriaBot {
             status: "online",
             activities: [
                 {
-                    name: "Made by Beban Community",
+                    name: "Made by x20",
                     type: 1, // STREAMING
                     url: "https://twitch.tv/dl1"
                 }
