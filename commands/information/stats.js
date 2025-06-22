@@ -62,7 +62,7 @@ module.exports = {
                         inline: false,
                     },
                 ])
-                .setFooter({ text: "Beban Community💖" })
+                .setFooter({ text: "Programmed And Devolped By x20" })
 
             return interaction.reply({
                 embeds: [embed]
