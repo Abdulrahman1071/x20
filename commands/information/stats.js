@@ -74,9 +74,7 @@ module.exports = {
             return interaction.reply({ 
                 embeds: [embed.setDescription(`\`❌\` | An error occurred: ${err.message}`)], 
                 ephemeral: true 
-                 options: {
-		devOnly: true
-	}
+                 
             });
         }
     }
