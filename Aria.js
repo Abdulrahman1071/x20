@@ -79,7 +79,7 @@ class AriaBot {
             status: "online",
             activities: [
                 {
-                    name: "Programmed And Devolped By x20",
+                    name: "Devolped And Programmed From Daddy x20",
                     type: 1, // STREAMING
                     url: "https://twitch.tv/dl1"
                 }
