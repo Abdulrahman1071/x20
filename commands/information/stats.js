@@ -13,28 +13,26 @@ module.exports = {
         .setDMPermission(true),
 
     run: async ({ interaction, client }) => {
-        // 🔒 تحقق من صلاحية المطوّر
-        const devIDs = config.DEV_ID.split(',');
-        if (!devIDs.includes(interaction.user.id)) {
-            return interaction.reply({ content: '❌ هذا الأمر للمطور فقط', ephemeral: true });
-        }
-
         try {
-            let nodes = "";
+            let nodes= "";
 
             client.riffy.nodes.forEach((node) => {
                 const lavalinkNode = client.riffy.nodeMap.get(node.name);
                 const lavalinkMemory = (lavalinkNode.stats.memory.used / 1024 / 1024).toFixed(2);
+
                 const lavalinkUptime = moment
                     .duration(lavalinkNode.stats.uptime)
                     .format("d[ Days]・h[ Hrs]・m[ Mins]・s[ Secs]");
-
-                nodes += `\`\`\`yml\nNode: ${node.name}\nUptime: ${lavalinkUptime}\nMemory: ${lavalinkMemory} MB\nPlayers: ${lavalinkNode.stats.playingPlayers} out of ${lavalinkNode.stats.players}\nLavalink Client: Riffy\`\`\`\n`;
+    
+                nodes += \\\yml\nNode: ${node.name}\nUptime: ${lavalinkUptime}\nMemory: ${lavalinkMemory} MB\nPlayers: ${lavalinkNode.stats.playingPlayers} out of ${lavalinkNode.stats.players}\nLavalink Client: Riffy\\\\n;
             });
 
             const osVersion = os.platform() + " " + os.release();
-            const nodeVersion = process.version;
-            const systemUptime = moment.duration(os.uptime() * 1000).format("d[ Days]・h[ Hrs]・m[ Mins]・s[ Secs]");
+            const nodeVersion =  process.version;
+
+            const systemUptime = moment
+			.duration(os.uptime() * 1000)
+			.format("d[ Days]・h[ Hrs]・m[ Mins]・s[ Secs]");
 
             const startTime = Date.now();
             await fetch("https://discord.com/api/v10/gateway");
@@ -43,34 +41,40 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor(config.clientOptions.embedColor)
                 .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
-                .setTitle(`${client.user.username} Information`)
-                .setDescription(`\`\`\`yml\nName: ${client.user.username} (${client.user.id})\nWebsocket Ping: ${client.ws.ping}ms\nApi Ping: ${apiPing}ms\n\`\`\``)
+                .setTitle(${client.user.username} Information)
+                .setDescription(\\\yml\nName: ${client.user.username} (${client.user.id})\nWebsocket Ping: ${client.ws.ping}ms\nApi Ping: ${apiPing}ms\n\\\`)
                 .setFields([
                     {
-                        name: `Lavalink Stats`,
+                        name: Lavalink Stats,
                         value: nodes,
                         inline: false,
                     },
                     {
                         name: "Bot Stats",
-                        value: `\`\`\`yml\nGuilds: ${client.guilds.cache.size} \nNodeJS: ${nodeVersion}\`\`\``,
+                        value: \\\yml\nGuilds: ${
+                            client.guilds.cache.size
+                        } \nNodeJS: ${nodeVersion}\\\`,
                         inline: true,
                     },
                     {
                         name: "System Stats",
-                        value: `\`\`\`yml\nOS: ${osVersion}\nUptime: ${systemUptime}\n\`\`\``,
+                        value: \\\yml\nOS: ${osVersion}\nUptime: ${systemUptime}\n\\\`,
                         inline: false,
                     },
                 ])
-                .setFooter({ text: "Programmed And Developed By x20" });
+                .setFooter({ text: "Programmed And Devolped By x20" })
 
-            return interaction.reply({ embeds: [embed] });
+            return interaction.reply({
+                embeds: [embed]
+            })
         } catch (err) {
             const embed = new EmbedBuilder().setColor(config.clientOptions.embedColor);
+
             logger(err, "error");
             return interaction.reply({ 
-                embeds: [embed.setDescription(`\`❌\` | An error occurred: ${err.message}`)], 
+                embeds: [embed.setDescription(\❌\ | An error occurred: ${err.message})], 
                 ephemeral: true 
+                 
             });
         }
     }
