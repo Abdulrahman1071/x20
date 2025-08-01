@@ -24,7 +24,7 @@ module.exports = {
                     .duration(lavalinkNode.stats.uptime)
                     .format("d[ Days]・h[ Hrs]・m[ Mins]・s[ Secs]");
     
-                nodes += \\\yml\nNode: ${node.name}\nUptime: ${lavalinkUptime}\nMemory: ${lavalinkMemory} MB\nPlayers: ${lavalinkNode.stats.playingPlayers} out of ${lavalinkNode.stats.players}\nLavalink Client: Riffy\\\\n;
+                nodes += `\`\`\`yml\nNode: ${node.name}\nUptime: ${lavalinkUptime}\nMemory: ${lavalinkMemory} MB\nPlayers: ${lavalinkNode.stats.playingPlayers} out of ${lavalinkNode.stats.players}\nLavalink Client: Riffy\`\`\`\n`;
             });
 
             const osVersion = os.platform() + " " + os.release();
@@ -41,28 +41,28 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor(config.clientOptions.embedColor)
                 .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 2048 }))
-                .setTitle(${client.user.username} Information)
-                .setDescription(\\\yml\nName: ${client.user.username} (${client.user.id})\nWebsocket Ping: ${client.ws.ping}ms\nApi Ping: ${apiPing}ms\n\\\`)
+                .setTitle(`${client.user.username} Information`)
+                .setDescription(`\`\`\`yml\nName: ${client.user.username} (${client.user.id})\nWebsocket Ping: ${client.ws.ping}ms\nApi Ping: ${apiPing}ms\n\`\`\``)
                 .setFields([
                     {
-                        name: Lavalink Stats,
+                        name: `Lavalink Stats`,
                         value: nodes,
                         inline: false,
                     },
                     {
                         name: "Bot Stats",
-                        value: \\\yml\nGuilds: ${
+                        value: `\`\`\`yml\nGuilds: ${
                             client.guilds.cache.size
-                        } \nNodeJS: ${nodeVersion}\\\`,
+                        } \nNodeJS: ${nodeVersion}\`\`\``,
                         inline: true,
                     },
                     {
                         name: "System Stats",
-                        value: \\\yml\nOS: ${osVersion}\nUptime: ${systemUptime}\n\\\`,
+                        value: `\`\`\`yml\nOS: ${osVersion}\nUptime: ${systemUptime}\n\`\`\``,
                         inline: false,
                     },
                 ])
-                .setFooter({ text: "Programmed And Devolped By x20" })
+                .setFooter({ text: "X20" })
 
             return interaction.reply({
                 embeds: [embed]
@@ -72,9 +72,8 @@ module.exports = {
 
             logger(err, "error");
             return interaction.reply({ 
-                embeds: [embed.setDescription(\❌\ | An error occurred: ${err.message})], 
+                embeds: [embed.setDescription(`\`❌\` | An error occurred: ${err.message}`)], 
                 ephemeral: true 
-                 
             });
         }
     }
