@@ -34,10 +34,10 @@ module.exports = {
     riffyNodes: [
         {
             name: "Lavalink", // The name of the node
-            host: "lava-all.ajieblogs.eu.org", // The hostname of the lavalink server
-            port: 443,  // The port of the lavalink server
-            password: "https://dsc.gg/ajidevserver", // The password of lavalink server
-            secure: true , // Does the lavalink server use secure connection
+            host: "46.202.82.164", // The hostname of the lavalink server
+            port: 1027,  // The port of the lavalink server
+            password: "jmlitelavalink", // The password of lavalink server
+            secure: false , // Does the lavalink server use secure connection
         },
     ],
 }
