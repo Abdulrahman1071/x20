@@ -154,7 +154,7 @@ module.exports = {
                     );
 
                     await interaction.editReply({ 
-                        embeds: [embed.setDescription(`\`✔\` |  Added **[${track.info.title}](${track.info.uri})** to playlist \`${selectedPlaylistName}\`.`).setFooter({ iconURL: "https://i.imgur.com/V8bD4zm.png", text: "BebanCode"})],
+                        embeds: [embed.setDescription(`\`✔\` |  Added **[${track.info.title}](${track.info.uri})** to playlist \`${selectedPlaylistName}\`.`).setFooter({ iconURL: "", text:"x20"})],
                         components: [] 
                     });
                     collector.stop();
